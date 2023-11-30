@@ -8,6 +8,7 @@ import fs from 'fs';
 import * as OS from 'os';
 import { SequelizeStorage, Umzug } from 'umzug';
 import Sequelize from 'sequelize';
+import { DIRECTORY_PATHS } from '../../config/constants.js';
 
 const osType = OS.platform();
 
@@ -56,7 +57,7 @@ export const runSeeders = async function () {
 const getMigratInstance = async function (folderName = 'migrations') {
     let time = Date.now();
     const sequelize = await getSequalizeIns();
-    const folderPath = path.resolve('src', 'database', folderName);
+    const folderPath = path.join(DIRECTORY_PATHS.databaseDir, folderName);
     const migrationsFolder = fs.readdirSync(folderPath).filter(x => x.includes('.js'));
     let allMigrations = await Promise.all(migrationsFolder.map(async name => {
         const migration = await import(path.join(folderPath, name));
@@ -68,7 +69,7 @@ const getMigratInstance = async function (folderName = 'migrations') {
     }, {})
     const migrator = new Umzug({
         migrations: {
-            glob: formatPath(path.resolve('src', 'database', folderName, '*.js')),
+            glob: formatPath(path.join(DIRECTORY_PATHS.databaseDir, folderName, '*.js')),
             resolve: ({ name, path, context }) => {
                 const migration = allMigrations[name];
                 return {

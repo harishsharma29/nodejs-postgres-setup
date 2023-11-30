@@ -7,10 +7,11 @@
 import path from 'path';
 import { seedFromCsv } from '../services/run-seeder.js';
 import config from '../../config/database-schema.js';
+import { DIRECTORY_PATHS } from '../../config/constants.js';
 
 export default {
     up: function (queryInterface, Sequelize, fileName) {
-        const file = path.resolve('src', 'database', 'seeders', 'csv', fileName.replace('.js', '.csv'));
+        const file = path.join(DIRECTORY_PATHS.seedersCSVDir, fileName.replace('.js', '.csv'));
         const map = function (_data) {
             return {
                 id: _data[0],

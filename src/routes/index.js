@@ -8,9 +8,10 @@ import fs from 'fs';
 
 import { NotFoundError } from '../utils/error.js';
 import logger from '../utils/logger.js'
+import { DIRECTORY_PATHS } from '../config/constants.js';
 
-const availableVersions = fs.readdirSync(path.resolve('src', 'routes')).filter(x => x !== 'index.js');
-const routePaths = availableVersions.map((x) => path.resolve('src', 'routes', x));
+const availableVersions = fs.readdirSync(DIRECTORY_PATHS.routesDir).filter(x => x !== 'index.js');
+const routePaths = availableVersions.map((x) => path.join(DIRECTORY_PATHS.routesDir, x));
 const routes = express.Router();
 
 let vIndex = 0;

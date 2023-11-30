@@ -1,4 +1,15 @@
 // require('dotenv').config();
+import path from 'path';
+import EventEmitter from 'events';
+
+export const EVENT_EMITTER = new EventEmitter();
+
+export const DIRECTORY_PATHS = {
+    routesDir: path.resolve('src', 'routes'),
+    databaseDir: path.resolve('src', 'database'),
+    databaseModelsDir: path.resolve('src', 'database', 'models'),
+    seedersCSVDir: path.resolve('src', 'database', 'seeders', 'csv'),
+}
 
 const WHITELIST = {
     users: {

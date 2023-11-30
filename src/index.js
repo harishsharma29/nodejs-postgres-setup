@@ -3,11 +3,10 @@
  */
 import express from 'express';
 import http from 'http';
-import path from 'path';
-import EventEmitter from 'events';
 
-global.myEmitter = new EventEmitter();
-global.rootDir = path.resolve();
+/**
+ * Adding directory paths into global variable to access anywhere
+ */
 
 import middlewaresConfig from './middleware/index.js';
 import ApiRoutes from './routes/index.js';

@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 import path from 'path';
 import fs from 'fs';
 import { getSequalizeIns } from './run-migration-seeders.js';
+import { DIRECTORY_PATHS } from '../../config/constants.js';
 
 export default async function () {
     const sequelize = await getSequalizeIns();
@@ -10,13 +11,11 @@ export default async function () {
     db.Sequelize = Sequelize;
     db.sequelize = sequelize;
 
-    const modelPath = path.resolve('src', 'database', 'models');
-
     // loop through all files in models directory
     let index = 0;
-    const allModels = fs.readdirSync(modelPath);
+    const allModels = fs.readdirSync(DIRECTORY_PATHS.databaseModelsDir);
     while (index < allModels.length) {
-        const modelFile = await import(path.join(modelPath, allModels[index]));
+        const modelFile = await import(path.join(DIRECTORY_PATHS.databaseModelsDir, allModels[index]));
         const model = modelFile.default(sequelize, Sequelize.DataTypes);
         db[model.name] = model;
         index++;
