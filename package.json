@@ -1,0 +1,62 @@
+{
+  "name": "nodejs-postgres-setup",
+  "version": "1.0.0",
+  "description": "A boiler plate for nodejs using postgres database",
+  "main": "src",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file .env src",
+    "start:dev": "node --env-file .env --watch src",
+    "prettier": "prettier --write '{,!(node_modules)}/**/*.{js,json}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/harishsharma29/nodejs-postgres-setup.git"
+  },
+  "keywords": [
+    "nodejs",
+    "postgres",
+    "setup",
+    "boiler",
+    "plate",
+    "initial",
+    "setup"
+  ],
+  "author": "Harish Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harishsharma29/nodejs-postgres-setup/issues"
+  },
+  "homepage": "https://github.com/harishsharma29/nodejs-postgres-setup#readme",
+  "dependencies": {
+    "apidoc": "^1.2.0",
+    "body-parser": "^1.20.0",
+    "compression": "^1.7.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.4",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "express-http-context": "^1.2.4",
+    "express-validation": "^4.1.0",
+    "express-validator": "^7.0.1",
+    "faker": "^5.5.3",
+    "http-status": "^1.7.3",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mocha": "^10.2.0",
+    "morgan": "^1.8.1",
+    "node-schedule": "^2.1.1",
+    "pg": "^8.11.3",
+    "prettier": "^3.1.0",
+    "sequelize": "^6.21.3",
+    "sequelize-cli": "^6.4.1",
+    "umzug": "^3.4.0",
+    "winston": "^3.11.0"
+},
+"devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "pretty-error": "^4.0.0"
+}
+}

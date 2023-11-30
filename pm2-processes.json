@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "nodejs-api-boilerplate",
+      "script": "./src/index.js",
+      "merge_logs": true,
+      "max_restarts": 20,
+      "instances": "1",
+      "exec_mode" : "fork",
+      "env_production" : {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
