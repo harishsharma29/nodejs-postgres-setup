@@ -12,9 +12,6 @@ function sendUnauthorizedResponse(_res, code, message) {
 
 export default async (_req, _res, _next) => {
     try {
-        if (!_req.cookies?.auth_token && !_req?.headers?.authorization) {
-            return sendUnauthorizedResponse(_res, HTTPStatus.UNAUTHORIZED, statusMessage.NO_AUTHORIZATION_HEADER);
-        }
         // Read token from request cookies
         let token = _req.cookies?.auth_token;
         if (!token) {

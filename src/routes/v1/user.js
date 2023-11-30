@@ -4,9 +4,9 @@
 
 import express from 'express';
 import { validate } from 'express-validation';
-import * as UserController from '../../controllers/user.controller.js';
+import * as UserController from '../../controllers/user.js';
 import responseHandler from '../../utils/response-handler.js';
-import * as UserValidations from '../../validations/user.validation.js';
+import * as UserValidations from '../../validations/user.js';
 
 const routes = express.Router();
 

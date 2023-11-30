@@ -9,7 +9,7 @@ import fs from 'fs';
 import { NotFoundError } from '../utils/error.js';
 import logger from '../utils/logger.js'
 
-const availableVersions = ['v1'];
+const availableVersions = fs.readdirSync(path.resolve('src', 'routes')).filter(x => x !== 'index.js');
 const routePaths = availableVersions.map((x) => path.resolve('src', 'routes', x));
 const routes = express.Router();
 
@@ -29,7 +29,7 @@ while (vIndex < routePaths.length) {
     vIndex++;
 }
 
-routes.all('*', (req, res, next) => next(new NotFoundError('Not Found!')));
+routes.all('*', (req, res, next) => next(new NotFoundError('Route Not Found!')));
 
 routes.use((error, req, res, next) => {
     logger.error(error);

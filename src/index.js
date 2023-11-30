@@ -6,16 +6,14 @@ import http from 'http';
 import path from 'path';
 import EventEmitter from 'events';
 
+global.myEmitter = new EventEmitter();
+global.rootDir = path.resolve();
+
 import middlewaresConfig from './middleware/index.js';
 import ApiRoutes from './routes/index.js';
 import Database from './database/index.js';
 
-global.myEmitter = new EventEmitter();
-
 const { HTTP_PORT } = process.env;
-global.rootDir = path.resolve();
-global.exportedFilesDirectory = path.resolve('exportedFiles');
-
 async function startServer() {
     // Create PostgreSQL database connection
     await Database.createDatabaseConnection();

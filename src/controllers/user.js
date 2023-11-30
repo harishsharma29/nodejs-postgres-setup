@@ -8,6 +8,7 @@ import { filteredBody } from '../utils/filtered-body.js';
 import constants from '../config/constants.js';
 import Users from '../database/operation/users.js';
 import statusMessage from '../config/status-message.js';
+import { BadRequestError } from '../utils/error.js';
 
 /**
  * @api {post} /users/signup Create a user
@@ -39,9 +40,12 @@ import statusMessage from '../config/status-message.js';
  *    email: 'email is required'
  *  }
  */
-export async function create(req, res, next) {
+export async function create(req, res) {
     const body = filteredBody(req.body, constants.WHITELIST.users.create);
+    if (!body) {
+        throw new BadRequestError('Message')
+    }
     const user = new Users();
     await user.create(body);
-    return [HTTPStatus.CREATED, { message: statusMessage.USER_CREATED }];
+    return [HTTPStatus.CREATED, { message: statusMessage.USER_CREATED, data: {} }];
 }
