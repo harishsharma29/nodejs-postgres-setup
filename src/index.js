@@ -12,10 +12,12 @@ global.rootDir = path.resolve();
 import middlewaresConfig from './middleware/index.js';
 import ApiRoutes from './routes/index.js';
 import Database from './database/index.js';
+import { runMigrationsAndSeeders } from './database/services/run-migration-seeders.js';
 
 const { HTTP_PORT } = process.env;
 async function startServer() {
     // Create PostgreSQL database connection
+    await runMigrationsAndSeeders();
     await Database.createDatabaseConnection();
     const app = express();
 

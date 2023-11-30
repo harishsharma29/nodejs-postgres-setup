@@ -4,8 +4,9 @@
 'use strict';
 
 import path from 'path';
+import fs from 'fs';
 import * as OS from 'os';
-import { SequelizeStorage } from 'umzug';
+import { SequelizeStorage, Umzug } from 'umzug';
 import Sequelize from 'sequelize';
 
 const osType = OS.platform();
@@ -55,21 +56,27 @@ export const runSeeders = async function () {
 const getMigratInstance = async function (folderName = 'migrations') {
     let time = Date.now();
     const sequelize = await getSequalizeIns();
+    const folderPath = path.resolve('src', 'database', folderName);
+    const migrationsFolder = fs.readdirSync(folderPath).filter(x => x.includes('.js'));
+    let allMigrations = await Promise.all(migrationsFolder.map(async name => {
+        const migration = await import(path.join(folderPath, name));
+        return [name, migration.default]
+    }))
+    allMigrations = allMigrations.reduce((pre, [name, migration]) => {
+        pre[name] = migration
+        return pre
+    }, {})
     const migrator = new Umzug({
         migrations: {
-            glob: formatPath(path.resolve(__dirname, `../${folderName}/*.js`)),
-            resolve: ({ name, path, context }) =>
-                import(path)
-                    .then((migration) => {
-                        return {
-                            name,
-                            up: async () => migration.up(context, Sequelize),
-                            down: async () => migration.down(context, Sequelize)
-                        };
-                    })
-                    .catch((error) => {
-                        throw error;
-                    })
+            glob: formatPath(path.resolve('src', 'database', folderName, '*.js')),
+            resolve: ({ name, path, context }) => {
+                const migration = allMigrations[name];
+                return {
+                    name,
+                    up: async () => migration.up(context, Sequelize, name),
+                    down: async () => migration.down(context, Sequelize, name)
+                }
+            }
         },
         context: sequelize.getQueryInterface(),
         storage: new SequelizeStorage({ sequelize, modelName: folderName === 'migrations' ? 'system_migrations' : 'system_seeders' })

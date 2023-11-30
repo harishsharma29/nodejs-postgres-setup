@@ -5,7 +5,7 @@ import schema from '../../config/database-schema.js';
 /**
  * A sample migration to create table and insert data from csv keep this file for future reference
  */
-module.exports = {
+export default {
     up: async function (queryInterface, Sequelize) {
         await queryInterface.createTable(schema.USERS, {
             id: {

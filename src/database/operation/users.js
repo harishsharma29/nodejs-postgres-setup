@@ -24,7 +24,6 @@ class Users extends Base {
             name: 'name',
             email: 'email',
             mobileNumber: 'mobileNumber',
-            address: 'address',
             tempToken: 'tempToken',
             lastLogin: 'lastLogin',
             password: 'password',
