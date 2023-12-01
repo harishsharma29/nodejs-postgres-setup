@@ -1,14 +1,16 @@
-// require('dotenv').config();
-import path from 'path';
 import EventEmitter from 'events';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 export const EVENT_EMITTER = new EventEmitter();
 
+const dirName = join(dirname(fileURLToPath(import.meta.url)), '..');
+
 export const DIRECTORY_PATHS = {
-    routesDir: path.resolve('src', 'routes'),
-    databaseDir: path.resolve('src', 'database'),
-    databaseModelsDir: path.resolve('src', 'database', 'models'),
-    seedersCSVDir: path.resolve('src', 'database', 'seeders', 'csv'),
+    routesDir: join(dirName, 'routes'),
+    databaseDir: join(dirName, 'database'),
+    databaseModelsDir: join(dirName, 'database', 'models'),
+    seedersCSVDir: join(dirName, 'database', 'seeders', 'csv'),
 }
 
 const WHITELIST = {
