@@ -5,7 +5,7 @@
   "main": "src",
   "type": "module",
   "scripts": {
-    "start": "node --env-file .env src",
+    "start": "node --env-file .env index",
     "start:dev": "node --env-file .env --watch src",
     "prettier": "prettier --write '{,!(node_modules)}/**/*.{js,json}'"
   },
