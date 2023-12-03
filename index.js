@@ -16,7 +16,7 @@ if (cluster.isPrimary) {
         })
         worker.on('message', (message) => {
             Object.values(cluster.workers).forEach(element => {
-                element.send(message + worker.id)
+                element.send(message)
             });
         })
         i++
