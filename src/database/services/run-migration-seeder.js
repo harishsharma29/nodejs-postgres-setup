@@ -8,7 +8,7 @@ import fs from 'fs';
 import * as OS from 'os';
 import { SequelizeStorage, Umzug } from 'umzug';
 import Sequelize from 'sequelize';
-import { DIRECTORY_PATHS } from '../../config/constants.js';
+import { DIRECTORY_PATHS } from '../../config/constant.js';
 
 const osType = OS.platform();
 
@@ -39,7 +39,7 @@ export const runMigrationsAndSeeders = async () => {
         await runMigrations();
         await runSeeders();
     } catch (error) {
-        console.log('>genus-wfm | [run-migration-seeders.js] | LINE #40 | error : ', error);
+        console.log('>genus-wfm | [run-migration-seeder.js] | LINE #40 | error : ', error);
         throw error;
     }
 };

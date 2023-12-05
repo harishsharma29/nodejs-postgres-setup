@@ -1,14 +1,14 @@
 import winston from 'winston';
 import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 import schedule from 'node-schedule';
+import { DIRECTORY_PATHS } from '../config/constant.js';
 
 const { DEBUG_NAMESPACE, NODE_ENV, LOG_LEVEL, APP_NAME } = process.env;
 
 class Logger {
   constructor() {
     this.isProduction = NODE_ENV === 'production';
-    this.logDirectory = join(dirname(fileURLToPath(import.meta.url)), 'log');
+    this.logDirectory = join(dirname(DIRECTORY_PATHS.baseDir), 'log');
 
     this.consoleOptions = {
       label: DEBUG_NAMESPACE,

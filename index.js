@@ -1,6 +1,6 @@
 import os from 'os';
 import cluster from 'cluster';
-import { runMigrationsAndSeeders } from './src/database/services/run-migration-seeders.js';
+import { runMigrationsAndSeeders } from './src/database/services/run-migration-seeder.js';
 
 const numberOfCpus = os.cpus().length
 

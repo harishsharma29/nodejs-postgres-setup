@@ -7,7 +7,7 @@
 import path from 'path';
 import { seedFromCsv } from '../services/run-seeder.js';
 import config from '../../config/database-schema.js';
-import { DIRECTORY_PATHS } from '../../config/constants.js';
+import { DIRECTORY_PATHS } from '../../config/constant.js';
 
 export default {
     up: function (queryInterface, Sequelize, fileName) {

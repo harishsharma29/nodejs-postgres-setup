@@ -7,6 +7,7 @@ export const EVENT_EMITTER = new EventEmitter();
 const dirName = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 export const DIRECTORY_PATHS = {
+    baseDir: dirName,
     routesDir: join(dirName, 'routes'),
     databaseDir: join(dirName, 'database'),
     databaseModelsDir: join(dirName, 'database', 'models'),

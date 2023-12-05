@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize';
 import path from 'path';
 import fs from 'fs';
-import { getSequalizeIns } from './run-migration-seeders.js';
-import { DIRECTORY_PATHS } from '../../config/constants.js';
+import { getSequalizeIns } from './run-migration-seeder.js';
+import { DIRECTORY_PATHS } from '../../config/constant.js';
 
 export default async function () {
     const sequelize = await getSequalizeIns();

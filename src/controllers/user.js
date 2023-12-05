@@ -5,8 +5,8 @@
 import HTTPStatus from 'http-status';
 
 import { filteredBody } from '../utils/filtered-body.js';
-import constants from '../config/constants.js';
-import Users from '../database/operation/users.js';
+import constants from '../config/constant.js';
+import Users from '../database/operation/user.js';
 import statusMessage from '../config/status-message.js';
 import { BadRequestError } from '../utils/error.js';
 

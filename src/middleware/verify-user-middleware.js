@@ -1,7 +1,7 @@
 import { set } from 'express-http-context';
 import HTTPStatus from 'http-status';
 import statusMessage from '../config/status-message.js';
-import Users from '../database/operation/users.js';
+import Users from '../database/operation/user.js';
 import logger from '../logger/logger.js';
 import TokenService from '../utils/token.js';
 
