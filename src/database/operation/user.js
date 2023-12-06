@@ -19,32 +19,20 @@ class Users extends Base {
         super(requestQuery);
         this.modelName = schema.USERS;
         this.initialiseModel();
-        this.fields = {
-            id: 'id',
-            name: 'name',
-            email: 'email',
-            mobileNumber: 'mobileNumber',
-            tempToken: 'tempToken',
-            lastLogin: 'lastLogin',
-            password: 'password',
-            userSalt: 'userSalt',
-            createdBy: 'createdBy',
-            updatedBy: 'updatedBy',
-            createdAt: 'createdAt',
-            updatedAt: 'updatedAt',
-            deletedAt: 'deletedAt'
-        };
-        this.fieldsList = Object.keys(this.fields);
+
+        this.blacklistedFields = ["password", "salt"]
+        this.fieldsList = ['id','name','username','email','mobileNumber','lastLogin','password','salt','countryCode','createdBy','updatedBy','createdAt','updatedAt','deletedAt']
+
         this.relations = [
             {
                 model: this.db[schema.USERS],
-                attributes: ['id', 'name', 'code'],
+                attributes: ['id', 'name'],
                 foreignKey: 'created_by',
                 as: 'createdByUser'
             },
             {
                 model: this.db[schema.USERS],
-                attributes: ['id', 'name', 'code'],
+                attributes: ['id', 'name'],
                 foreignKey: 'updated_by',
                 as: 'updatedByUser'
             }

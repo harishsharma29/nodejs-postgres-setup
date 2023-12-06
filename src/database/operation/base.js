@@ -72,13 +72,22 @@ class Base extends DataBaseConnection {
      * @returns
      */
     getWhitelistedFields(attributes) {
-        const isArray = Object.prototype.toString.call(attributes) === '[object Array]';
-        if (isArray) {
-            const allFieldsArr = Object.entries(this.fields);
-            const filtered = allFieldsArr.filter((x) => (x ? x[1].slice(0, 2) !== '__' : x));
-            return attributes.filter((x) => filtered.some((y) => y[0] === x));
+        if(Array.isArray(attributes)) {
+            return attributes.filter(x => this.blacklistedFields.includes(x))
         }
         return attributes;
+    }
+
+    /**
+     * return filtered object for whitelisted fields
+     * @param {Object} payload
+     * @returns
+     */
+    getWhitelistedPayload(payload) {
+        const entries = Object.entries(payload);
+        return entries.filter(([key, value]) => {
+            return !this.blacklistedFields.includes(key)
+        })
     }
 
     /**
